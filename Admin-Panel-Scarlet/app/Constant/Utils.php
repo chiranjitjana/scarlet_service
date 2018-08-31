@@ -14,12 +14,17 @@ class Utils extends Model
     public static function uploadFile($file){
       $destinationPath=Utils::$utils['upload_path'];
       $timestamp = time();
-      $file->move($destinationPath,$timestamp.$file->getClientOriginalName());
-      return $destinationPath.'/'.$timestamp.$file->getClientOriginalName();
+
+      if($file!=null){
+        $file->move($destinationPath,$timestamp.$file->getClientOriginalName());
+        return $destinationPath.'/'.$timestamp.$file->getClientOriginalName();
+      }
+
+      return "No image Found";
     }
 
   public static function deleteImage($path){
-      $real_path=Utils::$utils['delete_path'].basename($path[0]->image_path);
+      $real_path=Utils::$utils['delete_path'].basename($path);
       if(file_exists($real_path)) {
             unlink($real_path);
       }

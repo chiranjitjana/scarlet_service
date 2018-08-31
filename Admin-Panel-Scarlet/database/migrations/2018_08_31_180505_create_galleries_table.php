@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHomeOffersTable extends Migration
+class CreateGalleriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateHomeOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('home_offers', function (Blueprint $table) {
-            $table->increments('offer_id');
-            $table->string('image_path')->default('not found');;
+        Schema::create('gallery', function (Blueprint $table) {
+            $table->increments('gallery_id');
+            $table->string('cover_image');
+            $table->string('gallery_type');
             $table->longText('description');
-            $table->date('start_date');
-            $table->date('end_date');
             $table->date('created_date');
             $table->bigInteger('created_by');
         });
@@ -31,6 +30,6 @@ class CreateHomeOffersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('home_offers');
+        Schema::dropIfExists('gallery');
     }
 }

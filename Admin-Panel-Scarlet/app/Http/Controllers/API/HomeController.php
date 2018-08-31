@@ -51,7 +51,7 @@ class HomeController extends Controller
 
           $homeOffers=HomeOffers::where('offer_id', $id)->get();
           if(count($homeOffers)>0){
-          Utils::deleteImage(HomeOffers::select('image_path')->where('offer_id', $id)->get());
+          Utils::deleteImage(HomeOffers::select('image_path')->where('offer_id', $id)->get()[0]->image_path);
           HomeOffers::where('offer_id', $id)->delete();
 
          return response ()->json ( array (
@@ -73,7 +73,7 @@ class HomeController extends Controller
     $path=HomeOffers::select('image_path')->where('offer_id', $request['offer_id'])->get()[0]->image_path;
     if($file!=null){
       $path=Utils::uploadFile($file);
-      Utils::deleteImage(HomeOffers::select('image_path')->where('offer_id', $request['offer_id'])->get());
+      Utils::deleteImage(HomeOffers::select('image_path')->where('offer_id', $request['offer_id'])->get()[0]->image_path);
     }
 
     $input= $request->all();
@@ -128,7 +128,7 @@ public function removeHomeSlider($id){
 
         $homeSlider=HomeSlider::where('slider_id', $id)->get();
         if(count($homeSlider)>0){
-        Utils::deleteImage(HomeSlider::select('image_path')->where('slider_id', $id)->get());
+        Utils::deleteImage(HomeSlider::select('image_path')->where('slider_id', $id)->get()[0]->image_path);
         HomeSlider::where('slider_id', $id)->delete();
 
        return response ()->json ( array (
@@ -150,7 +150,7 @@ public function updateHomeSliderBanner(Request $request){
   $path=HomeSlider::select('image_path')->where('slider_id', $request['slider_id'])->get()[0]->image_path;
   if($file!=null){
     $path=Utils::uploadFile($file);
-    Utils::deleteImage(HomeSlider::select('image_path')->where('slider_id', $request['slider_id'])->get());
+    Utils::deleteImage(HomeSlider::select('image_path')->where('slider_id', $request['slider_id'])->get()[0]->image_path);
   }
 
   $input= $request->all();

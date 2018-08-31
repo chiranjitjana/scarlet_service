@@ -25,9 +25,21 @@ Route::group(['middleware' => 'auth:api'], function(){
       Route::post('createHomeSlider', 'API\HomeController@addHomeSliderBanner');
       Route::post('updateHomeSlider', 'API\HomeController@updateHomeSliderBanner');
       Route::post('removeHomeSlider/{id}', 'API\HomeController@removeHomeSlider');
+
+      Route::post('createTestimonial', 'API\TestimonialController@addTestimonial');
+      Route::post('updateTestimonial', 'API\TestimonialController@updateTestimonial');
+      Route::post('removeTestimonial/{id}', 'API\TestimonialController@removeTestimonial');
+
+      Route::post('createGallery', 'API\GalleryController@addToGallery');
+      Route::post('updateGallery', 'API\GalleryController@updateGallery');
+      Route::post('removeGallery/{id}', 'API\GalleryController@removeGallery');
+
+
 });
 
 
 /*All GET REQUEST FOR FETCHING PURPOSE*/
 Route::get('fetchAllHomeOffers','API\HomeController@getAllHomeOffers');
 Route::get('fetchAllHomeSliders','API\HomeController@getAllHomeSliders');
+Route::get('fetchAllTestimonials','API\TestimonialController@getAllTestimonials');
+Route::get('fetchAllGallery','API\GalleryController@getAllGallery');
