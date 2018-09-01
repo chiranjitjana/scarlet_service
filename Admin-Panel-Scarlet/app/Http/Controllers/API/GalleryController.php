@@ -21,8 +21,8 @@ class GalleryController extends Controller
       $file = $request->file('cover_image');
 
       $input['cover_image']= Utils::uploadFile($file);
-      $input['gallery_type']=$input['gallery_type'];
-      $input['description']=$input['description'];
+      $input['gallery_type']=$request['gallery_type'];
+      $input['description']=$request['description'];
       $input['created_date']=Carbon::now();
       $input['created_by']=$user->id;
 

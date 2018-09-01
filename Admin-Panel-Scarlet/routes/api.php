@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
+
+/** ONLY LOGIN USER ABLE TO CALL THE BELOW URLS*/
 Route::group(['middleware' => 'auth:api'], function(){
       Route::post('details', 'API\UserController@details');
 
@@ -34,6 +36,19 @@ Route::group(['middleware' => 'auth:api'], function(){
       Route::post('updateGallery', 'API\GalleryController@updateGallery');
       Route::post('removeGallery/{id}', 'API\GalleryController@removeGallery');
 
+      /*tour CRUD urls*/
+      Route::post('createTourTopic', 'API\TourController@addToTourTopic');
+      Route::post('updateTourTopic', 'API\TourController@updateTourTopic');
+      Route::post('removeTourTopic/{id}', 'API\TourController@removeTourTopic');
+
+      Route::post('createTour', 'API\TourController@addTour');
+      Route::post('updateTour', 'API\TourController@updateTour');
+      Route::post('removeTour/{id}', 'API\TourController@removeTour');
+
+      Route::post('createTourOverView', 'API\TourController@addTourOverView');
+      Route::post('updateTourOverView', 'API\TourController@updateTourOverView');
+      Route::post('removeTourOverView/{id}', 'API\TourController@removeTourOverView');
+
 
 });
 
@@ -43,3 +58,9 @@ Route::get('fetchAllHomeOffers','API\HomeController@getAllHomeOffers');
 Route::get('fetchAllHomeSliders','API\HomeController@getAllHomeSliders');
 Route::get('fetchAllTestimonials','API\TestimonialController@getAllTestimonials');
 Route::get('fetchAllGallery','API\GalleryController@getAllGallery');
+Route::get('fetchAllContact','API\ContactsController@getAllContact');
+Route::get('fetchAllTourTopic','API\TourController@getAllTourTopic');
+Route::get('fetchAllTour','API\TourController@getAllTour');
+Route::get('fetchAllTourOverView','API\TourController@getAllTourOverView');
+/*All PUBLIC POST URLS*/
+Route::post('createContact','API\ContactsController@addContact');
